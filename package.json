@@ -2,7 +2,7 @@
   "name": "opt-stack",
   "description": "Get options from a stack of sources.",
   "repository": "git://github.com/joshrtay/opt-stack.git",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "license": "MIT",
   "main": "lib/index.js",
   "scripts": {

@@ -10,8 +10,8 @@ Get options from a stack of sources ... cli, env, package, defaults.
 
 ## Features
 
-* Pull options `name` prefixed environment variables
-* Pull options form `name` field in package.json
+* Pull options from `name` prefixed environment variables
+* Pull options from `name` field in package.json
 * Pull options from cli
 * Coerce strings into numbers and booleans
 * Supports default values

@@ -48,7 +48,6 @@ function env (name) {
   })
   .forEach(key => {
     var val = process.env[key]
-    console.log('val', val, isNumber(val))
     if (isNumber(val)) val = toNumber(val)
     if (isBoolean(val)) val = toBoolean(val)
     opts[key.split('_').slice(1).join('_').toLowerCase()] = val
@@ -74,7 +73,7 @@ function checkType (schema, key, val) {
     : typeof schema[key]
   var valType = typeof val
   if (schemaType !== valType) {
-    throw new TypeError(`got ${valType} for ${key}, expecting ${schemaType}`)
+    throw new TypeError(`got ${valType} for "${key}"", expecting ${schemaType}`)
   }
   return val
 }

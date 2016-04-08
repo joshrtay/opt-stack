@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@f/extend": "^1.0.0",
+    "@f/identity": "^1.1.1",
     "@f/is-array": "^1.1.1",
     "@f/is-boolean": "^1.0.0",
     "@f/is-function": "^1.1.1",

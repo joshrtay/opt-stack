@@ -4,6 +4,8 @@
 
 const extend = require('@f/extend')
 const identity = require('@f/identity')
+const isArray = require('@f/is-array')
+const isObject = require('@f/is-object')
 const isBoolean = require('@f/string-is-boolean')
 const isNumber = require('@f/string-is-number')
 const isFunction = require('@f/is-function')
@@ -13,6 +15,7 @@ const omit = require('@f/omit')
 const toNumber = require('@f/string-to-number')
 const toBoolean = require('@f/string-to-boolean')
 const Switch = require('@f/switch')
+const camelCase = require('camel-case')
 const minimist = require('minimist')
 const {join} = require('path')
 const fs = require('fs')
@@ -30,8 +33,17 @@ exports.packJson = packJson
  * opt-stack
  */
 
-function optStack (name, schema = {}, required = true) {
-  var o = extend({}, schema, packJson(name), env(name), opts())
+function optStack (name, schema = {}) {
+  if (isArray(name)) {
+    var stack = name
+  } else if (isObject(name)) {
+    var stack = [opts()]
+    schema = name
+  } else {
+    var stack = [packJson(name), opts()]
+  }
+
+  var o = extend.apply(null, [{}, schema].concat(stack))
   return map((val, key) => schema[key] ? checkType(schema, key, val) : val, o)
 }
 
@@ -39,18 +51,20 @@ function opts () {
   return omit('_', minimist(process.argv))
 }
 
-function env (name) {
-  name = name.toLowerCase()
+function env (name = '') {
   const opts = {}
   Object.keys(process.env)
   .filter(key => {
-    return key.split('_')[0].toLowerCase() === name
+    return key.indexOf(name) === 0
   })
   .forEach(key => {
     var val = process.env[key]
     if (isNumber(val)) val = toNumber(val)
     if (isBoolean(val)) val = toBoolean(val)
-    opts[key.split('_').slice(1).join('_').toLowerCase()] = val
+    key = key.slice(name.length)
+    if (key[0] === '_') key = key.slice(1)
+    key = camelCase(key)
+    opts[key] = val
   })
   return opts
 }

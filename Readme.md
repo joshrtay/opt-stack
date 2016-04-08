@@ -6,16 +6,16 @@
 [![NPM version][npm-image]][npm-url]
 [![Code style][standard-image]][standard-url]
 
-Get options from a stack of sources ... cli, env, package, defaults.
+Get options from a stack of sources ... cli, package, defaults.
 
 ## Features
 
-* Pull options from `name` prefixed environment variables
 * Pull options from `name` field in package.json
 * Pull options from cli
 * Coerce strings into numbers and booleans
 * Supports default values
 * Specify required options
+* Optionally create your own option stack with environment support
 
 ## Installation
 
@@ -26,7 +26,7 @@ Get options from a stack of sources ... cli, env, package, defaults.
 ```js
 var optStack = require('opt-stack')
 
-// WOOT_FOO=env node cli --foo=cli
+// node cli --foo=cli
 optStack('woot', {foo: 'bar'}) // => {foo: 'cli'}
 optStack('woot', {qux: String}) // => throw new Error('qux required')
 optStack('woot', {foo: 1}) // => throw new TypeError('got string for "foo", expecting number')

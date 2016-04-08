@@ -12,9 +12,11 @@
   },
   "dependencies": {
     "@f/extend": "^1.0.0",
+    "@f/is-array": "^1.1.1",
     "@f/is-boolean": "^1.0.0",
     "@f/is-function": "^1.1.1",
     "@f/is-number": "^1.1.1",
+    "@f/is-object": "^1.1.4",
     "@f/is-string": "^1.1.1",
     "@f/map": "^1.5.3",
     "@f/omit": "^2.2.3",
@@ -23,6 +25,7 @@
     "@f/string-to-boolean": "^1.0.1",
     "@f/string-to-number": "^1.0.0",
     "@f/switch": "^1.0.0",
+    "camel-case": "^1.2.2",
     "minimist": "^1.2.0"
   },
   "devDependencies": {

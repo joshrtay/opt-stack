@@ -33,16 +33,18 @@ exports.packJson = packJson
  * opt-stack
  */
 
-function optStack (name, schema = {}) {
+function optStack (name, schema) {
   if (isArray(name)) {
     var stack = name
-  } else if (isObject(name)) {
+  } else if (isObject(name) && isUndefined(schema)) {
     var stack = [opts()]
     schema = name
+  } else if (isObject(name)) {
+    var stack = [name]
   } else {
     var stack = [packJson(name), opts()]
   }
-
+  schema = schema || {}
   var o = extend.apply(null, [{}, schema].concat(stack))
   return map((val, key) => schema[key] ? checkType(schema, key, val) : val, o)
 }

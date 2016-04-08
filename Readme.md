@@ -8,6 +8,15 @@
 
 Get options from a stack of sources ... cli, env, package, defaults.
 
+## Features
+
+* Pull options `name` prefixed environment variables
+* Pull options form `name` field in package.json
+* Pull options from cli
+* Coerce strings into numbers and booleans
+* Supports default values
+* Specify required options
+
 ## Installation
 
     $ npm install opt-stack
@@ -19,14 +28,16 @@ var optStack = require('opt-stack')
 
 // WOOT_FOO=env node cli --foo=cli
 optStack('woot', {foo: 'bar'}) // => {foo: 'cli'}
+optStack('woot', {qux: String}) // => throw new Error('qux required')
+optStack('woot', {foo: 1}) // => throw new TypeError('got string for "foo", expecting number')
 ```
 
 ## API
 
-### optStack(name, defaults)
+### optStack(name, schema)
 
 - `name` - name is use for env prefix and packageJson field
-- `defaults` - default options
+- `schema` - psuedo schema, if val its a default value, if type its a required field
 
 **Returns:** options
 

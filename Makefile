@@ -9,21 +9,11 @@ BIN = ./node_modules/.bin
 # Tasks
 #
 
-node_modules: package.json
-	@npm install
-	@touch node_modules
-
 test: node_modules
-	@${BIN}/tape -r babel-register -r babel-polyfill test/*
+	@${BIN}/tape test/*
 
 validate: node_modules
 	@standard
-
-clean:
-	@rm -rf lib
-
-build: clean
-	babel src --out-dir lib
 
 all: validate test
 
@@ -39,4 +29,4 @@ init:
 # Phony
 #
 
-.PHONY: test validate clean build all init
+.PHONY: test validate all init

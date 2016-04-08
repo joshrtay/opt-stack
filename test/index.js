@@ -3,9 +3,11 @@
  */
 
 const test = require('tape')
-const optStack = require('../src')
+const optStack = require('..')
 
-const {env, opts, packJson} = optStack
+const env = optStack.env
+const opts = optStack.opts
+const packJson = optStack.packJson
 
 
 /**

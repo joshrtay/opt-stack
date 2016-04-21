@@ -17,6 +17,7 @@
     "@f/is-number": "^1.1.1",
     "@f/is-object": "^1.1.4",
     "@f/is-string": "^1.1.1",
+    "@f/is-undefined": "^1.1.1",
     "@f/map": "^1.5.3",
     "@f/omit": "^2.2.3",
     "@f/string-is-boolean": "^1.0.0",

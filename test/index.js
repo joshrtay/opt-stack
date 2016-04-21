@@ -50,6 +50,13 @@ test('should require vals', (t) => {
   t.end()
 })
 
+test('should require vals', (t) => {
+  t.throws(_ => {
+    optStack({foo: 'bar'}, {woot: String})
+  }, Error)
+  t.end()
+})
+
 test('should check type', (t) => {
   process.argv = ['node', 'foo', '--woot=2']
   t.throws(_ => {
